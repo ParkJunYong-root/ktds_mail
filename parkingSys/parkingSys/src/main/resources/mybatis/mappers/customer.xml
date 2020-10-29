@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.customer">
+	<resultMap id="cusResult" type="customerVO">
+		<result property="bookNum" column="bookNum" />
+        <result property="park" column="park" />
+        <result property="entryDate" column="entryDate" />
+        <result property="exitDate" column="exitDate" />
+        <result property="carType" column="carType" />
+        <result property="carNum" column="carNum" />
+        <result property="cellNum" column="cellNum" />
+        <result property="email" column="email" />
+        <result property="pwd" column="pwd" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap> 
+    
+   <insert id="insertCustomer" parameterType="customerVO">
+   <![CDATA[
+		 insert into c_member(bookNum, park, entryDate, exitDate, carType, carNum, cellNum, email, pwd)
+		 values(parking_seq.nextval, #{park}, #{entryDate}, #{exitDate}, #{carType}, #{carNum}, #{cellNum}, #{email}, #{pwd})
+	]]>
+   		<selectKey keyProperty ="bookNum" resultType= "Integer" order= "BEFORE" >
+                     SELECT parking_seq.NEXTVAL FROM DUAL
+        </selectKey>
+	</insert>
+     
+   <delete id="deleteCustomer"  parameterType="String">
+	<![CDATA[
+	   delete from  c_member
+	   where
+	   carNum=#{carNum}
+	]]>      
+  </delete>
+   
+   <update id="updateCustomer"  parameterType="customerVO">
+     <![CDATA[
+	     update c_member
+	     set park=#{park}, entryDate=#{entryDate}, exitDate=#{exitDate}, exitDate=#{exitDate}, carType=#{carType}, cellNum=#{cellNum}, email=#{email}, pwd=#{pwd}
+	     where
+	     carNum=#{carNum}
+      ]]>      
+   </update> 
+     
+  <select id="checkinByCarNum"  resultType="customerVO"  parameterType="customerVO" >
+	<![CDATA[
+		select * from c_member	
+		where carNum=#{carNum} and pwd=#{pwd}		
+	]]>
+  </select>
+  
+    <select id="reservationCheck"  resultType="customerVO"   parameterType="customerVO" >
+	<![CDATA[
+		select * from c_member	
+		where carNum=#{carNum} and pwd=#{pwd}		
+	]]>
+  </select>
+</mapper>

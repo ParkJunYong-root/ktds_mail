@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="title" value="" />
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+
+   <definition name="main" extends="baseLayout">
+      <put-attribute name="title" value="메인페이지" />
+      <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+   </definition>
+
+   <definition name="/customer/reservationForm" extends="baseLayout">
+      <put-attribute name="title" value=" 주차장 예약창" />
+      <put-attribute name="body" value="/WEB-INF/views/customer/reservationForm.jsp" />
+   </definition>
+
+	<definition name="/customer/reservationCheckForm" extends="baseLayout">
+      <put-attribute name="title" value=" 주차장 예약확인창" />
+      <put-attribute name="body" value="/WEB-INF/views/customer/reservationCheckForm.jsp" />
+   </definition>
+
+   <definition name="/customer/reservationFinishForm" extends="baseLayout">
+      <put-attribute name="title" value="예약안내창" />
+      <put-attribute name="body" value="/WEB-INF/views/customer/reservationFinishForm.jsp" />
+   </definition>
+    
+       <definition name="/customer/reservationResultForm" extends="baseLayout">
+      <put-attribute name="title" value="예약내역창" />
+      <put-attribute name="body" value="/WEB-INF/views/customer/reservationResultForm.jsp" />
+   </definition>
+
+
+</tiles-definitions>
